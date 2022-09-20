@@ -1,0 +1,4 @@
+administer abuse_ip_db configuration:
+  title: 'Administer abuse_ip_db configuration'
+  description: 'Optional description.'
+  restrict access: true

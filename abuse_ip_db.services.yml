@@ -1,0 +1,13 @@
+services:
+  logger.channel.abuse_ip_db:
+    parent: logger.channel_base
+    arguments: ['abuse_ip_db']
+  abuse_ip_db.manager:
+    class: Drupal\abuse_ip_db\AbuseManager
+    arguments: ['@database', '@datetime.time', '@http_client', '@config.factory', '@logger.channel.abuse_ip_db']
+  abuse_ip_db.middleware:
+    class: Drupal\abuse_ip_db\AbuseMiddleware
+    arguments: ['@abuse_ip_db.manager']
+    tags:
+      # Ensure to come before page caching.
+      - { name: http_middleware, priority: 250 }

@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Abuse ip db module.
+abuse_ip_db.settings:
+  type: config_object
+  label: 'Abuse ip db settings'
+  mapping:
+    api_key:
+      type: string
+      label: 'AbuseIPDB API Key'

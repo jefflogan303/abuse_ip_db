@@ -1,0 +1,5 @@
+abuse_ip_db.settings:
+  title: AbuseIPDB Settings
+  parent: system.admin_config_system
+  route_name: abuse_ip_db.settings
+  weight: 10

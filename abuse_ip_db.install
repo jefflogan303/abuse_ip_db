@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ */
+function abuse_ip_db_uninstall() {
+  // Clean up old config.
+  \Drupal::configFactory()->getEditable('abuse_ip_db.settings')->delete('api_key');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function abuse_ip_db_schema() {
+
+  $schema['abuse_ip_db'] = [
+    'description' => 'Stores abuse_ip_db results.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: unique ID for IP addresses.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'ip' => [
+        'description' => 'IP address',
+        'type' => 'varchar_ascii',
+        'length' => 40,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'score' => [
+        'description' => 'Score',
+        'type' => 'varchar_ascii',
+        'length' => 40,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'timestamp' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Unix timestamp of last lookup.',
+      ],
+    ],
+    'indexes' => [
+      'ip' => ['ip'],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}
+

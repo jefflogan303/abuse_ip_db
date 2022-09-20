@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Abuse IP DB module.
+ */
+
+function abuse_ip_db_cron() {
+  \Drupal::service('abuse_ip_db.manager')->deleteExpired();
+}
